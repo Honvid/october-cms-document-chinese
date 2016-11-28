@@ -59,7 +59,7 @@ nano /etc/lighttpd/conf-enabled/sites.conf
 ```
 
 Paste the following code in the editor and change the host address and server.document-root to match your project.
-
+```
 $HTTP["host"] =~ "example.domain.com" {
     server.document-root = "/var/www/example/"
 
@@ -72,7 +72,7 @@ $HTTP["host"] =~ "example.domain.com" {
         "(.*)" => "/index.php$1"
     )
 }
-
+```
 ## IIS configuration
 
 If your webserver is running Internet Information Services (IIS) you can use the following in your web.config configuration file to run OctoberCMS.
@@ -97,7 +97,7 @@ If your webserver is running Internet Information Services (IIS) you can use the
 
 ## Application configuration
 
-Debug mode
+### Debug mode
 
 The debug setting is found in the config/app.php configuration file with the debug parameter and is enabled by default.
 
@@ -105,10 +105,11 @@ When enabled, this setting will show detailed error messages when they occur alo
 
 The debug mode uses the following features when enabled:
 
-Detailed error pages are displayed.
-Failed user authentication provides a specific reason.
-Combined assets are not minified by default.
-Safe mode is disabled by default.
+1. Detailed error pages are displayed.
+2. Failed user authentication provides a specific reason.
+3. Combined assets are not minified by default.
+4. Safe mode is disabled by default.
+
 Important: Always set the app.debug setting to false for production environments.
 Safe mode
 
@@ -116,13 +117,13 @@ The safe mode setting is found in the config/cms.php configuration file with the
 
 If safe mode is enabled, the PHP code section is disabled in CMS templates for security reasons. If set to null, safe mode is on when debug mode is disabled.
 
-CSRF protection
+### CSRF protection
 
 October provides an easy method of protecting your application from cross-site request forgeries. First a random token is placed in your user's session. Then when a opening form tag is used the token is added to the page and submitted back with each request.
 
 While CSRF protection is disabled by default, you can enable it with the enableCsrfProtection parameter in the config/cms.php configuration file.
 
-Bleeding edge updates
+### Bleeding edge updates
 
 The October platform and some plugins will implement changes in two stages to ensure overall stability and integrity of the platform. This means they have a test build in addition to the default stable build.
 
@@ -143,7 +144,8 @@ You can instruct the platform to prefer test builds by changing the edgeUpdates 
 ```
 
 Note: For plugin developers we recommend enabling Test updates for your plugins listed on the marketplace, via the Plugin Settings page.
-Environment configuration
+
+## Environment configuration
 
 It is often helpful to have different configuration values based on the environment the application is running in. You can do this by setting the APP_ENV environment variable which by default it is set to production. There are two common ways to change this value:
 
@@ -152,8 +154,10 @@ Set APP_ENV value directly with your webserver.
 For example, in Apache this line can be added to the .htaccess or httpd.config file:
 ```
 SetEnv APP_ENV "dev"
+```
 Create a .env file in the root directory with the following content:
 
+```
 APP_ENV=dev
 ```
 
@@ -177,20 +181,23 @@ return [
 ```
 ## Advanced configuration
 
-Using a public folder
+### Using a public folder
 
 For ultimate security in production environments you may configure your web server to use a public/ folder to ensure only public files can be accessed. First you will need to spawn a public folder using the october:mirror command.
-
+```
 php artisan october:mirror public/
+```
 This will create a new directory called public/ in the project's base directory, from here you should modify the webserver configuration to use this new path as the home directory, also known as wwwroot.
 
 Note: The above command may need to be performed with System Administrator or sudo privileges. It should also be performed after each system update or when a new plugin is installed.
 Extended environment configuration
 
 As an alternative to the standard environment configuration you may place common values in the environment instead of using configuration files. The config is then accessed using DotEnv syntax. Run the october:env command to move common config values to the environment:
-
+```
 php artisan october:env
+```
 This will create an .env file in project root directory and modify configuration files to use env helper function. The first argument contains the key name found in the environment, the second argument contains an optional default value.
-
+```
 'debug' => env('APP_DEBUG', true),
+```
 Your .env file should not be committed to your application's source control, since each developer or server using your application could require a different environment configuration.
