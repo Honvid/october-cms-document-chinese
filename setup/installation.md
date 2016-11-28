@@ -63,7 +63,7 @@ For example, in production environments you may want to enable CSRF protection. 
 
 While most configuration is optional, we strongly recommend disabling debug mode for production environments.
 
-Setting up the scheduler
+## Setting up the scheduler
 
 For scheduled tasks to operate correctly, you should add the following Cron entry to your server. Editing the crontab is commonly performed with the command crontab -e.
 ```
@@ -73,7 +73,8 @@ For scheduled tasks to operate correctly, you should add the following Cron entr
 Be sure to replace /path/to/artisan with the absolute path to the artisan file in the root directory of October. This Cron will call the command scheduler every minute. Then October evaluates any scheduled tasks and runs the tasks that are due.
 
 Note: If you are adding this to /etc/cron.d you'll need to specify a user immediately after * * * * *.
-Setting up queue workers
+
+## Setting up queue workers
 
 You may optionally set up an external queue for processing queued jobs, by default these will be handled asynchronously by the platform. This behavior can be changed by setting the default parameter in the config/queue.php.
 
