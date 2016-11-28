@@ -30,13 +30,13 @@ The wizard installation is a recommended way to install October. It is simpler t
 
 ## Troubleshooting installation
 
-1. ** An error 500 is displayed when downloading the application files: ** You may need to increase or disable the timeout limit on your webserver. For example, Apache's FastCGI sometimes has the -idle-timeout option set to 30 seconds.
+1. **An error 500 is displayed when downloading the application files:** You may need to increase or disable the timeout limit on your webserver. For example, Apache's FastCGI sometimes has the -idle-timeout option set to 30 seconds.
 
-2. ** A blank screen is displayed when opening the application: ** Check the permissions are set correctly on the files and folders. For example, running the command chmod -R 777 * can fix it.
+2. **A blank screen is displayed when opening the application:** Check the permissions are set correctly on the files and folders. For example, running the command chmod -R 777 * can fix it.
 
-3. ** An error code "liveConnection" is displayed: ** The installer will test a connection to the installation server using port 80. Check that your webserver can create outgoing connections on port 80 via PHP. Contact your hosting provider or this is often found in the server firewall settings.
+3. **An error code "liveConnection" is displayed:** The installer will test a connection to the installation server using port 80. Check that your webserver can create outgoing connections on port 80 via PHP. Contact your hosting provider or this is often found in the server firewall settings.
 
-4. ** MySQL shows an error "Syntax error or access violation: ** 1067 Invalid default value for ...": Check your MySQL settings file to make sure the NO_ZERO_DATE setting is disabled.
+4. **MySQL shows an error "Syntax error or access violation:** 1067 Invalid default value for ...": Check your MySQL settings file to make sure the NO_ZERO_DATE setting is disabled.
 Note: A detailed installation log can be found in the install_files/install.log file.
 
 ## Command-line installation
@@ -66,8 +66,10 @@ While most configuration is optional, we strongly recommend disabling debug mode
 Setting up the scheduler
 
 For scheduled tasks to operate correctly, you should add the following Cron entry to your server. Editing the crontab is commonly performed with the command crontab -e.
-
+```
 * * * * * php /path/to/artisan schedule:run >> /dev/null 2>&1
+```
+
 Be sure to replace /path/to/artisan with the absolute path to the artisan file in the root directory of October. This Cron will call the command scheduler every minute. Then October evaluates any scheduled tasks and runs the tasks that are due.
 
 Note: If you are adding this to /etc/cron.d you'll need to specify a user immediately after * * * * *.
