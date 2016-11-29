@@ -40,7 +40,7 @@ The wizard installation is a recommended way to install October. It is simpler t
 
 4. **MySQL shows an error "Syntax error or access violation:** 1067 Invalid default value for ...": Check your MySQL settings file to make sure the NO_ZERO_DATE setting is disabled.
 
-> Note: A detailed installation log can be found in the install_files/install.log file.
+> Note: A detailed installation log can be found in the install_files/install.log file.  
 
 ## Command-line installation
 
@@ -75,7 +75,7 @@ For scheduled tasks to operate correctly, you should add the following Cron entr
 
 Be sure to replace `/path/to/artisan` with the absolute path to the artisan file in the root directory of October. This Cron will call the command scheduler every minute. Then October evaluates any scheduled tasks and runs the tasks that are due.
 
-> Note: If you are adding this to `/etc/cron.d` you'll need to specify a user immediately after `* * * * *`.
+> Note: If you are adding this to `/etc/cron.d` you'll need to specify a user immediately after `* * * * *`.  
 
 ## Setting up queue workers
 
