@@ -1,3 +1,14 @@
+# 安装
+- [最低系统要求](#system-requirements)
+- [安装向导程序](#wizard-installation)
+    - [安装过程可能出现的问题](#troubleshoot-installation)
+- [命令行安装](#command-line-installation)
+- [安装后的步骤](#post-install-steps)
+    - [删除安装文件](#delete-install-files)
+    - [检查配置](#config-review)
+    - [设置调度器](#crontab-setup)
+    - [设置队列任务](#queue-setup)
+
 October CMS 提供两种方式进行安装，你可以使用“安装向导程序”或者“命令行”完成安装。在安装之前，你应该确认你的服务器是否满足October的最低系统要求。
 
 ## 最低系统要求
