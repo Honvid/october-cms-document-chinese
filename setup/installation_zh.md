@@ -10,7 +10,7 @@
     - [设置队列任务](#queue-setup)
 
 October CMS 提供两种方式进行安装，你可以使用“安装向导程序”或者“命令行”完成安装。在安装之前，你应该确认你的服务器是否满足October的最低系统要求。
-
+<a name="system-requirements"></a>
 ## 最低系统要求
 
 October CMS 的服务器最低要求：
@@ -26,7 +26,7 @@ October CMS 的服务器最低要求：
 对于PHP 5.5，有些系统可能需要手动安装PHP JSON 扩展。如果系统是Ubuntu，可以通过`apt-get install php5-json`命令进行安装。
 
 如果使用SQL Server 数据库引擎，你需要安装[Group Concatenation](https://groupconcat.codeplex.com/) 自定义聚合插件。
-
+<a name="wizard-installation"></a>
 ## 安装向导程序
 
 通过安装向导程序安装October CMS 是官方推荐的安装方式。它比命令行方式安装更加简单，而且不需要特殊技巧。
@@ -37,7 +37,7 @@ October CMS 的服务器最低要求：
 4. 配置安装目录、子目录以及文件的可写权限。
 5. 在浏览器中运行`install.php` 文件。
 6. 根据安装说明完成安装。
-
+<a name="troubleshoot-installation"></a>
 ### 安装过程可能出现的问题
 
 1. **下载应用文件的时候出现500错误：**或许需要增加或者禁用Web服务器的超时限制。例如，Apache的FastCGI有`-idle-timeout`的选项可以设置为30秒。
@@ -50,14 +50,17 @@ October CMS 的服务器最低要求：
 
 > 注意：可以在`install_files/install.log`中查看详细的安装日志。  
 
+<a name="command-line-installation"></a>
 ## 命令行安装
 
 如果感觉命令行方式更亲切，或者想使用`composer`，在[控制台界面](')提供了CLI 安装进程
 
+<a name="post-install-steps"></a>
 ## 安装后的步骤
 
 安装完成后，您可能需要完成下面的设置。 
 
+<a name="delete-install-files"></a>
 ### 删除安装文件
 
 如果你使用了安装向导程序，安全起见，你应该删掉安装文件。October绝对不会自动删除系统上的文件，所以需要手动删除这些文件和目录：
@@ -66,6 +69,7 @@ install_files/      <== 安装目录
 install.php         <== 安装脚本
 ```
 
+<a name="config-review"></a>
 ### 检查配置
 
 配置文件存放在应用的`config`目录。每一个文件中都包含配置的详细说明，检查系统环境[通用配置选项](')的可用性是非常重要的。
@@ -74,6 +78,7 @@ install.php         <== 安装脚本
 
 虽然大多数配置是可选的，但我们强烈建议在生产环境时禁用[调试模式](')
 
+<a name="crontab-setup"></a>
 ### 设置调度器
 
 为了准确的执行计划任务，你应该添加下面Cron的内容到服务器。通常可以使用命令`crontab -e`来编辑Crontab。
@@ -85,6 +90,7 @@ install.php         <== 安装脚本
 
 > 注意：如果添加`/etc/cron.d`则需要在 `* * * * *`后面添加一个指定的用户。
 
+<a name="queue-setup"></a>
 ### 设置队列任务
 
 你可以选择设置一个用于处理队列作业的外部队列，默认情况下，这些将由平台异步处理。 这些行为也可以通过设置`config/queue.php`文件中的参数`default`来设定。
