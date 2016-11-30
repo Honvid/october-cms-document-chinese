@@ -75,7 +75,7 @@ $HTTP["host"] =~ "example.domain.com" {
 
 ### IIS配置
 
-如果使用**Internet Information Services (IIS) **，你可以在`web.config`中使用下面的配置来运行October CMS。
+如果使用**Internet Information Services (IIS)**，你可以在`web.config`中使用下面的配置来运行October CMS。
 
 ```
 <?xml version="1.0" encoding="UTF-8"?>
@@ -139,17 +139,21 @@ October平台和一些插件一般采用两种方式来确保整个平台的整�
 
 ### 环境配置
 通常，基于应用的运行环境配置不同的配置是非常有帮助的，你可以通过设置`APP_ENV`环境变量来实现，默认为`production`。这里有两种方式：
+
 1. 直接在服务器上设置`APP_ENV`的值。
 例如在Apache环境中，添加下面代码到`.htaccess`或`httpd.config`文件中。
 ```
 SetEnv APP_ENV "dev"
 ```
+
 2. 在根目录下创建`.env`文件，填写以下内容：
 ```
 APP_ENV=dev
 ```
+
 上面的两种示例已经把环境变量设置为`dev`，现在可以在`config/dev`目录中创建配置文件，这些配置文件会覆盖应用的基本配置。
 比如，仅在`dev`环境下使用不同的MySQL数据库，在`config/dev/database.php`中添加如下内容：
+
 ```
 <?php
 return [
@@ -165,19 +169,27 @@ return [
 ];
 ```
 ## 高级配置
+
 ### 使用`public`目录
+
 为保障生产环境中的高度安全性，需要配置Web服务器使用`pulic/`文件夹，以确保只有公共文件可以被访问。首先，你需要用`october:mirror`命令生成一个公共文件夹。
+
 ```
 php artisan october:mirror public/
 ```
+
 这会在项目的根目录创建一个`public`文件夹，到这里，你需要编辑服务器的配置来使用这个新目录作为主目录，也被称为`wwwroot`。
+
 > 注意：上面的命令执行的时候需要系统管理员或者_sudo_权限。同时，也需要在系统更新或者安装新的插件之后执行。
 
 ### 扩展环境配置
+
 作为一种替代标准环境配置的方法，你可以在环境中放置公共配置，而不是使用配置文件。这个配置是利用[DotEnv](')语法访问。运行`october:env`命令移动共同配置到系统环境：
+
 ```
 php artisan october:env
 ``` 
+
 这将在项目根目录里创建一个`.env`文件，修改相关配置可以使用`env`的辅助函数。第一个参数是环境中`key`，第二个参数包含一个可选的默认值。
 ```
 'debug' => env('APP_DEBUG', true),
